@@ -140,7 +140,7 @@ BriefParser.prototype.parse=function(){
 				break;
 			case "x":
 			case "left":
-				var curValue=parseInt(value);
+				var curValue=parseInt(line.value);
 				if(isNaN(curValue)){
 					this.parseError(line, BriefParser.errors.INVALID_NUMBER);
 				}
@@ -155,7 +155,7 @@ BriefParser.prototype.parse=function(){
 				break;
 			case "y":
 			case "top":
-				var curValue=parseInt(value);
+				var curValue=parseInt(line.value);
 				if(isNaN(curValue)){
 					this.parseError(line, BriefParser.errors.INVALID_NUMBER);
 				}
@@ -173,27 +173,27 @@ BriefParser.prototype.parse=function(){
 			case "coord":
 			case "position":
 			case "pos":
-				var values = value.split(",");
+				var values = line.value.split(",");
 				currentActor.x=parseInt(values[0]);
 				currentActor.y=parseInt(values[1]);
 				break;
 			case "wh":
 			case "size":
-				var values = value.split(",");
+				var values = line.value.split(",");
 				currentActor.width = parseInt(values[0]);
 				currentActor.height = parseInt(values[1]);
 				break;
 			case "xywh":
 			case "bounds":
 			case "frame":
-				var values = value.split(",");
+				var values = line.value.split(",");
 				currentActor.x = parseInt(values[0]);
 				currentActor.y = parseInt(values[1]);
 				currentActor.width = parseInt(values[2]);
 				currentActor.height = parseInt(values[3]);
 				break;
 			case "action":
-				currentActor.action = value;
+				currentActor.action = line.value;
 				break;
 			case "rainbowrainbow":
 				/* Easter egg! */
