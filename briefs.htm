@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>Briefs-JS</title>
+<script src="briefs.js"></script>
+<script>
+function doParse(){
+	var script=document.getElementById("my-textarea").value;
+	var parser=new BriefParser(script);
+	alert(script);
+	parser.parse();
+	console.log(parser.world);
+	return parser.world;
+}
+</script>
+</head>
+<body>
+<textarea id="my-textarea" cols="80" rows="25"></textarea>
+<button onclick="alert(doParse())">Go!</button>
+</body>
+</html>
