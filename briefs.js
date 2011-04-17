@@ -2,7 +2,13 @@ function Actor(name, world, scene){
 	this.name=name;
 	this.world=world;
 	this.scene=scene;
+	this.x=0;
+	this.y=0;
+	this.width=0;
+	this.height=0;
+	this.visible=true;
 }
+Actor.prototype.visible=true;
 function World(){
 	this.scenes=[];
 }
@@ -213,5 +219,6 @@ BriefParser.prototype.parse=function(){
 		
 	}
 	this.world=world;
+	return world;
 }
 
