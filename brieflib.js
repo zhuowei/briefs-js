@@ -9,6 +9,10 @@ var brief={
 			var actor = this.getActor(actorName);
 			actor.style.display = "";
 		},
+	"hide": function(actorName){
+			var actor = this.getActor(actorName);
+			actor.style.display = "none";
+		},
 	"toggle": function(actorName){
 			alert("The toggle function is not yet supported.");
 		},

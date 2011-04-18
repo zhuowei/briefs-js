@@ -1,4 +1,6 @@
 var textArea;
+var outputTextArea;
+var outputLink;
 var startButton;
 var briefDom;
 var BRIEF_PREFIX = "brief-"
@@ -7,17 +9,21 @@ var BRIEF_XHTML_DOCTYPE = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//
 
 function init(){
 	textArea=document.getElementById("main-textarea");
+	outputTextArea=document.getElementById("output-textarea");
+	outputLink=document.getElementById("output-link");
 	startButton=document.getElementById("startbutton");
 	startButton.onclick=startParse;
 }
 function startParse(){
 	var briefXML = brief2html(textArea.value);
 	alert(briefXML);
+	outputTextArea.value = briefXML;
+	outputLink.href = "data:text/application/xhtml+xml," + encodeURIComponent(briefXML);
 }
 function brief2html(briefScriptText){
 	var parser = new BriefParser(briefScriptText);
 	var world = parser.parse();
-	alert(world);
+	//alert(world);
 	var doc = document.implementation.createDocument ('http://www.w3.org/1999/xhtml', 'html', null);
 	var head = document.createElementNS('http://www.w3.org/1999/xhtml', 'head');
 	doc.documentElement.appendChild(head);
@@ -58,10 +64,14 @@ function brief2html(briefScriptText){
 			var actorElem = doc.createElementNS('http://www.w3.org/1999/xhtml', "img");
 			//actorElem.setAttribute("id", BRIEF_PREFIX + "actor-"+escapeId(actor.name));
 			actorElem.setAttribute("class", BRIEF_PREFIX + "actor " + BRIEF_PREFIX + escapeId(actor.name));
+			actorElem.setAttribute("alt", "");
 			var actorstyle="left:"+actor.x+"px;top:"+actor.y+"px;width:"+actor.width+"px;" +
 				"height:"+actor.height+"px;";
 			if(actor.image){
 				actorElem.setAttribute("src", actor.image);
+			}
+			else{
+				actorElem.setAttribute("src", "");
 			}
 			if(!actor.visible){
 				actorstyle+="display:none;";
@@ -89,7 +99,7 @@ function getScript(action){
 		options[opt]=options[opt].trim();
 		jsOptionsStr = jsOptionsStr + "'" + options[opt] + "'" + (opt!=options.length-1? ",": "");
 	}
-	console.log(command + options);
+	//console.log(command + options);
 	switch(command){
 		case "move":
 		case "goto":
