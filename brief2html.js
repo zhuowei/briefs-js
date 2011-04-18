@@ -55,13 +55,13 @@ function brief2html(briefScriptText){
 		//Actors
 		for(var actorNum=0;actorNum<scene.actors.length;actorNum++){
 			var actor = scene.actors[actorNum];
-			var actorElem = doc.createElementNS('http://www.w3.org/1999/xhtml', "div");
+			var actorElem = doc.createElementNS('http://www.w3.org/1999/xhtml', "img");
 			//actorElem.setAttribute("id", BRIEF_PREFIX + "actor-"+escapeId(actor.name));
 			actorElem.setAttribute("class", BRIEF_PREFIX + "actor " + BRIEF_PREFIX + escapeId(actor.name));
 			var actorstyle="left:"+actor.x+"px;top:"+actor.y+"px;width:"+actor.width+"px;" +
 				"height:"+actor.height+"px;";
 			if(actor.image){
-				actorstyle+="background-image:url('"+actor.image+"');";
+				actorElem.setAttribute("src", actor.image);
 			}
 			if(!actor.visible){
 				actorstyle+="display:none;";

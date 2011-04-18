@@ -1,15 +1,12 @@
 var BRIEF_PREFIX = "brief-";
 var brief={
 	"move": function(actorName, x, y){
-			var curScene = document.getElementById(BRIEF_PREFIX + "scene-" + escapeId(this.currentScene));
-			var actor = curScene.getElementsByClassName(BRIEF_PREFIX + escapeId(actorName))[0];
+			var actor = this.getActor(actorName);
 			actor.style.left = x + "px";
 			actor.style.top = y + "px";
-			console.log("move" + actor.style.left + actor.style.top);
 		},
 	"show": function(actorName){
-			var curScene = document.getElementById(BRIEF_PREFIX + "scene-" + escapeId(this.currentScene));
-			var actor = curScene.getElementsByClassName(BRIEF_PREFIX + escapeId(actorName))[0];
+			var actor = this.getActor(actorName);
 			actor.style.display = "";
 		},
 	"toggle": function(actorName){
@@ -22,7 +19,16 @@ var brief={
 			oldscene.style.display="none";
 			this.currentScene = sceneName;
 		},
-	"currentScene" : ""
+	"resize": function(actorName, width, height){
+			var actor = this.getActor(actorName);
+			actor.style.width = width + "px";
+			actor.style.height = height + "px";
+		},
+	"currentScene" : "",
+	"getActor":function(actorName){
+			var curScene = document.getElementById(BRIEF_PREFIX + "scene-" + escapeId(this.currentScene));
+			return curScene.getElementsByClassName(BRIEF_PREFIX + escapeId(actorName))[0];
+		}
 };
 function escapeId(str){
 	return str.replace(/\ /g, "-");
