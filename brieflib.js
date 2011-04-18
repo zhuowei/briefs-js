@@ -2,13 +2,14 @@ var BRIEF_PREFIX = "brief-";
 var brief={
 	"move": function(actorName, x, y){
 			var curScene = document.getElementById(BRIEF_PREFIX + "scene-" + escapeId(this.currentScene));
-			
+			var actor = curScene.getElementsByClassName(BRIEF_PREFIX + escapeId(actorName))[0];
 			actor.style.left = x + "px";
 			actor.style.top = y + "px";
 			console.log("move" + actor.style.left + actor.style.top);
 		},
 	"show": function(actorName){
-			var actor = document.getElementById(BRIEF_PREFIX + "actor-" + escapeId(actorName));
+			var curScene = document.getElementById(BRIEF_PREFIX + "scene-" + escapeId(this.currentScene));
+			var actor = curScene.getElementsByClassName(BRIEF_PREFIX + escapeId(actorName))[0];
 			actor.style.display = "";
 		},
 	"toggle": function(actorName){

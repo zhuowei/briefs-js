@@ -56,8 +56,8 @@ function brief2html(briefScriptText){
 		for(var actorNum=0;actorNum<scene.actors.length;actorNum++){
 			var actor = scene.actors[actorNum];
 			var actorElem = doc.createElementNS('http://www.w3.org/1999/xhtml', "div");
-			actorElem.setAttribute("id", BRIEF_PREFIX + "actor-"+escapeId(actor.name));
-			actorElem.setAttribute("class", BRIEF_PREFIX + "actor");
+			//actorElem.setAttribute("id", BRIEF_PREFIX + "actor-"+escapeId(actor.name));
+			actorElem.setAttribute("class", BRIEF_PREFIX + "actor " + BRIEF_PREFIX + escapeId(actor.name));
 			var actorstyle="left:"+actor.x+"px;top:"+actor.y+"px;width:"+actor.width+"px;" +
 				"height:"+actor.height+"px;";
 			if(actor.image){
